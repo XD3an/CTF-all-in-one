@@ -1,6 +1,6 @@
 # My-CTF-all-in-one
 
-## CTF
+## Wargame & CTF
 
 - [picoCTF](https://picoctf.org/)
 - [CRYPTOHACK](https://cryptohack.org/)
