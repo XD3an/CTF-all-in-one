@@ -1,11 +1,5 @@
 # My-CTF-all-in-one
 
-## Tool
-
-- shellcode
-    - x86
-    - x86_64
-
 ## CTF
 
 - [picoCTF](https://picoctf.org/)
@@ -30,3 +24,9 @@
     - prepare work
     - method
     - ...
+
+## Tools
+
+- **shellcode**
+    - x86
+    - x86_64
