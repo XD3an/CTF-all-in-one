@@ -6,7 +6,7 @@
 
 ## Solution
 
-### 嘗試執行，並且查看資料夾中附 ReadMe.txt。
+### 嘗試執行，並且查看資料夾中附 ReadMe.txt
 
 ```
 ReversingKr KeygenMe
@@ -22,11 +22,11 @@ Find the Name when the Serial is 5B134977135E7D13
 
 - 沒殼
 
-### 分析。
+### 分析
 
 程式會要求輸入 name 與 serial，serial 會根據 name 所變動，會將 name 與 [0x10, 0x20, 0x30]的循環作 xor 運算取得正確的 serial，根據輸入的 serial 作比對，以判斷是否成功。
 
-### Get flag
+### Flag
 
 - flag.py
     
