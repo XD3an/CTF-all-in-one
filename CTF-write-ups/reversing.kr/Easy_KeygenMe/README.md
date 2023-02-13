@@ -3,13 +3,11 @@
 ---
 
 ## Information
-
 ---
 
 - src: [reversing.kr](http://reversing.kr/challenge.php)
 
 ## Solution
-
 ---
 
 ### 嘗試執行，並且查看資料夾中附 ReadMe.txt。
