@@ -7,7 +7,6 @@
 - CTF name
 - Challenge name
 - Callenge description
-- Challenge category
 - ...
 
 ### Solution
