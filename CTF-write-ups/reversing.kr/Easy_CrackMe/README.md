@@ -1,12 +1,10 @@
 # Easy Crack
 
 ## Information
----
 
 - src: [reversing.kr](http://reversing.kr/challenge.php)
 
 ## Solution
----
 
 0. 嘗試執行檔案
 
