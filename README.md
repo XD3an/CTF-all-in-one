@@ -7,7 +7,7 @@
 - [Crackmes](https://crackmes.one/)
 - [pwnable.kr](https://pwnable.kr/)
 - [PortSwigger](https://portswigger.net/web-security/all-labs)
-- [Reversing.kr](https://reversing.kr)
+- [Reversing.kr]((http://reversing.kr/)
 
 ## write-up format
 
