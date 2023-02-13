@@ -9,22 +9,6 @@
 - [PortSwigger](https://portswigger.net/web-security/all-labs)
 - [Reversing.kr](http://reversing.kr/)
 
-## write-up format
-
-### Information
-
-- CTF name
-- Challenge name
-- Callenge description
-- Challenge category
-- ...
-
-### Solution
-
-- Content
-    - prepare work
-    - method
-    - ...
 
 ## Tools
 
