@@ -6,7 +6,8 @@
 
 ## Solution
 
-### 嘗試執行，並且查看資料夾中附 ReadMe.txt
+
+### 觀察程式相關資訊
 
 ```
 ReversingKr KeygenMe
@@ -16,7 +17,6 @@ Find the Name when the Serial is 5B134977135E7D13
 
 ![Untitled](Easy%20Keygen%204e71afd6024740e481771d3541a35a32/Untitled.png)
 
-### 查殼
 
 ![Untitled](Easy%20Keygen%204e71afd6024740e481771d3541a35a32/Untitled%201.png)
 
@@ -24,7 +24,7 @@ Find the Name when the Serial is 5B134977135E7D13
 
 ### 分析
 
-程式會要求輸入 name 與 serial，serial 會根據 name 所變動，會將 name 與 [0x10, 0x20, 0x30]的循環作 xor 運算取得正確的 serial，根據輸入的 serial 作比對，以判斷是否成功。
+- 程式會要求輸入 name 與 serial，serial 會根據 name 所變動，會將 name 與 [0x10, 0x20, 0x30]的循環作 xor 運算取得正確的 serial，根據輸入的 serial 作比對，以判斷是否成功。
 
 ### Flag
 
