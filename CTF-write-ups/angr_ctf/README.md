@@ -171,7 +171,7 @@ False
 
 ## Simulation Manager
 
-- [angr Documentations](https://docs.angr.io/core-concepts/pathgroups)
+- [angr Documentation - Simulation Manager](https://docs.angr.io/core-concepts/pathgroups)
     - [Stepping](https://docs.angr.io/core-concepts/pathgroups#stepping)
     - [Stash Management](https://docs.angr.io/core-concepts/pathgroups#stash-management)
     - [Stash types](https://docs.angr.io/core-concepts/pathgroups#stash-types)
@@ -230,7 +230,7 @@ False
 
 ### SimProcedures
 
-- 用於將自訂義的編寫的函數取代原來的函數
+- 用於將自訂義編寫的函數取代原來的函數。
     ```py
     >>> project = Project('examples/fauxware/fauxware')
 
