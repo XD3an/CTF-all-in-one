@@ -195,7 +195,7 @@ False
 
 ### Stepping
 
-- [step](https://api.angr.io/angr.html#angr.sim_state.SimState.step): 使用 Symbolic Execution 執行一個 Step。
+- [step](https://api.angr.io/angr.html#angr.sim_state.SimState.step): 使用 Symbolic Execution 執行一個 basic block。
 
 ### Explore
 
