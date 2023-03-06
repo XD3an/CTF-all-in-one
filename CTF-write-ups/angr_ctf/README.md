@@ -52,32 +52,37 @@
 
 ## The Factory
 
-```py
->>> block = proj.factory.block(proj.entry)
+- Blocks
 
->>> block
-<Block for 0x401050, 33 bytes>
+- States
 
->>> block.instructions
-11
+- Simulation Managers 
+    ```py
+    >>> block = proj.factory.block(proj.entry)
 
->>> block.instruction_addrs
-(4198480, 4198482, 4198485, 4198486, 4198489, 4198493, 4198494, 4198495, 4198498, 4198500, 4198507)
+    >>> block
+    <Block for 0x401050, 33 bytes>
 
->>> block.pp()
-        _start:
-401050  xor     ebp, ebp
-401052  mov     r9, rdx
-401055  pop     rsi
-401056  mov     rdx, rsp
-401059  and     rsp, 0xfffffffffffffff0
-40105d  push    rax
-40105e  push    rsp
-40105f  xor     r8d, r8d
-401062  xor     ecx, ecx
-401064  mov     rdi, main
-40106b  call    qword ptr [0x403fd8]
-```
+    >>> block.instructions
+    11
+
+    >>> block.instruction_addrs
+    (4198480, 4198482, 4198485, 4198486, 4198489, 4198493, 4198494, 4198495, 4198498, 4198500, 4198507)
+
+    >>> block.pp()
+            _start:
+    401050  xor     ebp, ebp
+    401052  mov     r9, rdx
+    401055  pop     rsi
+    401056  mov     rdx, rsp
+    401059  and     rsp, 0xfffffffffffffff0
+    40105d  push    rax
+    40105e  push    rsp
+    40105f  xor     r8d, r8d
+    401062  xor     ecx, ecx
+    401064  mov     rdi, main
+    40106b  call    qword ptr [0x403fd8]
+    ```
 - 輸出所有 block。
     ```py
     proj = angr.Project('/path/to/binary')
