@@ -52,11 +52,10 @@
 
 ## The Factory
 
-- Blocks
-
-- States
-
-- Simulation Managers 
+- 將物件實例化。
+    - Blocks    
+    - States
+    - Simulation Managers 
     ```py
     >>> block = proj.factory.block(proj.entry)
 
@@ -100,28 +99,29 @@
     - [Loading Options](https://docs.angr.io/core-concepts/loading#loading-options)
         - [Backends](https://docs.angr.io/core-concepts/loading#backends)
         - [Symbolic Function Summaries](https://docs.angr.io/core-concepts/loading#symbolic-function-summaries)
-```py
->>> proj.loader
-<Loaded test, maps [0x400000:0xa07fff]>
+- 載入執行檔。
+    ```py
+    >>> proj.loader
+    <Loaded test, maps [0x400000:0xa07fff]>
 
->>> proj.loader.shared_objects
-OrderedDict([('test', <ELF Object test, maps [0x400000:0x404027]>), ('libc.so.6', <ELF Object libc.so.6, maps [0x500000:0x6e0f4f]>), ('ld-linux-x86-64.so.2', <ELF Object ld-linux-x86-64.so.2, maps [0x700000:0x7332d7]>), ('extern-address space', <ExternObject Object cle##externs, maps [0x800000:0x87ffff]>), ('cle##tls', <ELFTLSObjectV2 Object cle##tls, maps [0x900000:0x91500f]>)])
+    >>> proj.loader.shared_objects
+    OrderedDict([('test', <ELF Object test, maps [0x400000:0x404027]>), ('libc.so.6', <ELF Object libc.so.6, maps [0x500000:0x6e0f4f]>), ('ld-linux-x86-64.so.2', <ELF Object ld-linux-x86-64.so.2, maps [0x700000:0x7332d7]>), ('extern-address space', <ExternObject Object cle##externs, maps [0x800000:0x87ffff]>), ('cle##tls', <ELFTLSObjectV2 Object cle##tls, maps [0x900000:0x91500f]>)])
 
->>> proj.loader.min_addr
-4194304
+    >>> proj.loader.min_addr
+    4194304
 
->>> proj.loader.max_addr
-10518527
+    >>> proj.loader.max_addr
+    10518527
 
->>> proj.loader.main_object
-<ELF Object test, maps [0x400000:0x404027]>
+    >>> proj.loader.main_object
+    <ELF Object test, maps [0x400000:0x404027]>
 
->>> proj.loader.main_object.execstack
-False
+    >>> proj.loader.main_object.execstack
+    False
 
->>> proj.loader.main_object.pic
-False
-```
+    >>> proj.loader.main_object.pic
+    False
+    ```
 
 ## Solver Engine
 
