@@ -78,6 +78,15 @@
 401064  mov     rdi, main
 40106b  call    qword ptr [0x403fd8]
 ```
+- 輸出所有 block。
+    ```py
+    proj = angr.Project('/path/to/binary')
+    init_state = proj.factory.entry_state()
+    simgr = proj.factory.simgr(init_state)
+    while simgr.active:
+        print(proj.factory.block(simgr.active[0].addr).pp())
+        simgr.step()
+    ```
 
 ## Loading a Binary
 - [angr-Documentation - Loading a Binary](https://docs.angr.io/core-concepts/loading#the-loader)
@@ -263,6 +272,51 @@ False
             return 0x30
 
     proj.hook(0x4008cd, fixpid())
+    ```
+### Capstone
+
+- angr 的反組譯器， 負責轉換為組合語言（CapstonenInsn），之後會將組合語言轉換為 basic block （CapstoneBlock）。
+
+- CapstoneBlock: 用於表示一個 basic block，內容包含記憶體位址、CPU指令、CPU架構等。
+    ```py
+    proj = angr.Project('/path/to/binary')
+    bb = proj.factory.block(proj.entry)
+    print(angr.block.CapstoneBlock)
+
+    # addrss
+    print(hex(bb.capstone.addr))
+
+    # arch
+    print(bb.capstone.arch)
+
+    # bytes
+    print(bb.bytes)
+
+    # the number of instructions
+    print(bb.instructions)
+
+    # list each instruction of the basic block
+    print(bb.capstone.insns)
+    
+    # pretty print
+    print(bb.capstone.pp())
+    ```
+- CapstoneInsn: CPU指令。
+    ```py
+    # list each instruction of the basic block
+    print(bb.capstone.insns)
+
+    # pretty print
+    print(bb.capstone.pp())
+
+    # insns address
+    print(bb.capstone.insns[0].address)
+
+    # mnemonic
+    print(bb.capstone.insns[0].mnemonic)
+
+    # operands
+    print(bb.capstone.insns[0].op_str)
     ```
 
 ## Further Reading
