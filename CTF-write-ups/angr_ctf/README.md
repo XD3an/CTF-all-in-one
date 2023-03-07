@@ -30,23 +30,26 @@
 
 - import
     ```py
-    import angr #the main framework
-    import claripy #the solver engine
+    >> import angr #the main framework
+    >> import claripy #the solver engine
     ```
 
 - Load binary
     ```py
-    proj = angr.Project('./path/to/binary')
+    >> proj = angr.Project('./path/to/binary')
     ```
 - Properties
     ```py
     >>> proj.arch
-    <Arch AMD64 (LE)>
+    <Arch X86 (LE)>
+    
     >>> proj.entry
-    4198480
+    134513744
+    
     >>> hex(proj.entry)
-    '0x401050'
-    >>> proj.filename
+    '0x8048450'
+    
+    >>> proj.arch
     './test'
     ```
 
@@ -58,29 +61,28 @@
     - Simulation Managers 
     ```py
     >>> block = proj.factory.block(proj.entry)
-
+    
     >>> block
-    <Block for 0x401050, 33 bytes>
-
-    >>> block.instructions
-    11
-
+    <Block for 0x8048450, 33 bytes>
+    
     >>> block.instruction_addrs
-    (4198480, 4198482, 4198485, 4198486, 4198489, 4198493, 4198494, 4198495, 4198498, 4198500, 4198507)
-
+    (134513744, 134513746, 134513747, 134513749, 134513752, 134513753, 134513754, 134513755, 134513760, 134513765, 134513766, 134513767, 134513772)
+    
     >>> block.pp()
             _start:
-    401050  xor     ebp, ebp
-    401052  mov     r9, rdx
-    401055  pop     rsi
-    401056  mov     rdx, rsp
-    401059  and     rsp, 0xfffffffffffffff0
-    40105d  push    rax
-    40105e  push    rsp
-    40105f  xor     r8d, r8d
-    401062  xor     ecx, ecx
-    401064  mov     rdi, main
-    40106b  call    qword ptr [0x403fd8]
+    8048450  xor     ebp, ebp
+    8048452  pop     esi
+    8048453  mov     ecx, esp
+    8048455  and     esp, 0xfffffff0
+    8048458  push    eax
+    8048459  push    esp
+    804845a  push    edx
+    804845b  push    __libc_csu_fini
+    8048460  push    __libc_csu_init
+    8048465  push    ecx
+    8048466  push    esi
+    8048467  push    main
+    804846c  call    __libc_start_main
     ```
 - 輸出所有 block。
     ```py
@@ -102,19 +104,16 @@
 - 載入執行檔。
     ```py
     >>> proj.loader
-    <Loaded test, maps [0x400000:0xa07fff]>
-
-    >>> proj.loader.shared_objects
-    OrderedDict([('test', <ELF Object test, maps [0x400000:0x404027]>), ('libc.so.6', <ELF Object libc.so.6, maps [0x500000:0x6e0f4f]>), ('ld-linux-x86-64.so.2', <ELF Object ld-linux-x86-64.so.2, maps [0x700000:0x7332d7]>), ('extern-address space', <ExternObject Object cle##externs, maps [0x800000:0x87ffff]>), ('cle##tls', <ELFTLSObjectV2 Object cle##tls, maps [0x900000:0x91500f]>)])
+    <Loaded 00_angr_find, maps [0x8048000:0x8707fff]>
 
     >>> proj.loader.min_addr
-    4194304
-
+    134512640
+    
     >>> proj.loader.max_addr
-    10518527
+    141590527
 
     >>> proj.loader.main_object
-    <ELF Object test, maps [0x400000:0x404027]>
+    <ELF Object 00_angr_find, maps [0x8048000:0x804a03f]>
 
     >>> proj.loader.main_object.execstack
     False
@@ -134,8 +133,8 @@
 
 - 創建 Symbolic 物件 (Bitvectors)。
     ```py
-    sym_size = 8
-    sym_arg = claripiy.BVS('sym_arg', 8*sym_size)
+    >> sym_size = 8
+    >> sym_arg = claripiy.BVS('sym_arg', 8*sym_size)
     ```
 
 - 限制 sym_arg 的 char 範圍。
@@ -165,17 +164,17 @@
 
 - entry_state
     - entry point
-    ```py
-    state = proj.factory.entry_state()
-    ```
+        ```py
+        >> state = proj.factory.entry_state()
+        ```
 - blank_state
     - 指定特定記憶體位址，使用 blank_state() 回傳 SimState 物件。
-    ```py
-    # set start address
-    start_address = 0x08048980
-    # use blank_state() to create a SimState object
-    init_state = proj.factory.blank_state(addr=start_address)
-    ```
+        ```py
+        # set start address
+        >> start_address = 0x08048980
+        # use blank_state() to create a SimState object
+        >> init_state = proj.factory.blank_state(addr=start_address)
+        ```
 - [full_init_state](https://api.angr.io/angr.html#angr.factory.AngrObjectFactory.full_init_state)
 
 - [call_state](https://api.angr.io/angr.html#angr.factory.AngrObjectFactory.call_state)
@@ -194,33 +193,33 @@
 
 - Simulation Manager 
     ```py
-    simgr = proj.factory.simulation_manager(state)
-    simgr = proj.factory.simgr(state)
+    >> simgr = proj.factory.simulation_manager(state)
+    >> simgr = proj.factory.simgr(state)
     ```   
 
 ### Stepping
 
-- [step](https://api.angr.io/angr.html#angr.sim_state.SimState.step): 使用 Symbolic Execution 執行一個 basic block。
+- [step](https://api.angr.io/angr.html#angr.sim_state.SimState.step): 使用 Symbolic Execution 執行一個 [basic block](https://en.wikipedia.org/wiki/Basic_block)。
 
 ### Explore
 
 - 選擇其他 exploring startegy。
     - [Exploration Technique](https://api.angr.io/angr.html#angr.exploration_techniques.ExplorationTechnique)
     ```py
-    simgr.use_technique(angr.exploration_techniques.DFS())
+    >> simgr.use_technique(angr.exploration_techniques.DFS())
     ```
 - Explore
     ```py
-    simgr.explore(find=find_condition, avoid=avoid_condition)
+    >> simgr.explore(find=find_condition, avoid=avoid_condition)
     ```
 - After Explore
     ```py
-    found = simgr.found[0] # A state that reached the find condition from explore
-    found.solver.eval(sym_arg, cast_to=bytes) # Return a concrete string value for the sym arg to reach this state
+    >> found = simgr.found[0] # A state that reached the find condition from explore
+    >> found.solver.eval(sym_arg, cast_to=bytes) # Return a concrete string value for the sym arg to reach this state
     ```
 - Symbolica Execute 直到 lambe expression 成立為 `True`。
     ```py
-    simgr.step(until=lambda sm: sm.active[0].addr >= first_jmp)
+    >> simgr.step(until=lambda sm: sm.active[0].addr >= first_jmp)
     ```
 ### Manually Exploring
 
@@ -266,8 +265,8 @@
 
 - 用 angr 已經包好的 Symbol。
     ```py
-    proj = angr.Project('/path/to/binary', use_sim_procedures=True)
-    proj.hook(addr, angr.SIM_PROCEDURES['libc']['atoi']())
+    >> proj = angr.Project('/path/to/binary', use_sim_procedures=True)
+    >> proj.hook(addr, angr.SIM_PROCEDURES['libc']['atoi']())
     ```
 
 - 使用 SimProcedure。
@@ -284,44 +283,59 @@
 
 - CapstoneBlock: 用於表示一個 basic block，內容包含記憶體位址、CPU指令、CPU架構等。
     ```py
-    proj = angr.Project('/path/to/binary')
-    bb = proj.factory.block(proj.entry)
-    print(angr.block.CapstoneBlock)
+    >> proj = angr.Project('/path/to/binary')
+    >> bb = proj.factory.block(proj.entry)
+    >> print(angr.block.CapstoneBlock)
 
     # addrss
-    print(hex(bb.capstone.addr))
-
+    >>> print(hex(bb.capstone.addr))
+    0x8048450
+    
     # arch
-    print(bb.capstone.arch)
-
+    >> print(bb.capstone.arch)
+    <Arch X86 (LE)>
+    
     # bytes
-    print(bb.bytes)
+    >> print(bb.bytes)
+    b'1\xed^\x89\xe1\x83\xe4\xf0PTRh\x10\x87\x04\x08h\xb0\x86\x04\x08QVh\xc7\x85\x04\x08\xe8\xaf\xff\xff\xff'
 
     # the number of instructions
-    print(bb.instructions)
+    >> print(bb.instructions)
+    13
 
     # list each instruction of the basic block
-    print(bb.capstone.insns)
-    
+    >> print(bb.capstone.insns)
+    [<DisassemblerInsn "xor" for 0x8048450>, <DisassemblerInsn "pop" for 0x8048452>, <DisassemblerInsn "mov" for 0x8048453>, <DisassemblerInsn "and" for 0x8048455>, <DisassemblerInsn "push" for 0x8048458>, <DisassemblerInsn "push" for 0x8048459>, <DisassemblerInsn "push" for 0x804845a>, <DisassemblerInsn "push" for 0x804845b>, <DisassemblerInsn "push" for 0x8048460>, <DisassemblerInsn "push" for 0x8048465>, <DisassemblerInsn "push" for 0x8048466>, <DisassemblerInsn "push" for 0x8048467>, <DisassemblerInsn "call" for 0x804846c>]
+
     # pretty print
-    print(bb.capstone.pp())
+    >> print(bb.capstone.pp())
+    0x8048450:      xor     ebp, ebp
+    0x8048452:      pop     esi
+    0x8048453:      mov     ecx, esp
+    0x8048455:      and     esp, 0xfffffff0
+    0x8048458:      push    eax
+    0x8048459:      push    esp
+    0x804845a:      push    edx
+    0x804845b:      push    0x8048710
+    0x8048460:      push    0x80486b0
+    0x8048465:      push    ecx
+    0x8048466:      push    esi
+    0x8048467:      push    0x80485c7
+    0x804846c:      call    0x8048420
     ```
 - CapstoneInsn: CPU指令。
     ```py
-    # list each instruction of the basic block
-    print(bb.capstone.insns)
-
-    # pretty print
-    print(bb.capstone.pp())
-
     # insns address
-    print(bb.capstone.insns[0].address)
+    >> print(hex(bb.capstone.insns[0].address))
+    '0x8048450'
 
     # mnemonic
-    print(bb.capstone.insns[0].mnemonic)
+    >> print(bb.capstone.insns[0].mnemonic)
+    'xor'
 
     # operands
-    print(bb.capstone.insns[0].op_str)
+    >> print(bb.capstone.insns[0].op_str)
+    'ebp, ebp'
     ```
 
 ## Further Reading
