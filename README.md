@@ -15,6 +15,6 @@
 - **shellcode**
     - x86
     - x86_64
-- **angr_sheatsheet**
+- **angr-sheatsheet**
 - **Tools sheatsheet**
     
