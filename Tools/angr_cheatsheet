@@ -36,63 +36,102 @@
 
 - Load binary
     ```py
+    # load a binary
     >> proj = angr.Project('./path/to/binary')
     ```
 - Properties
     ```py
+    # return the arch of proj
     >>> proj.arch
     <Arch X86 (LE)>
     
+    # return the entry point  
     >>> proj.entry
     134513744
-    
     >>> hex(proj.entry)
     '0x8048450'
     
-    >>> proj.arch
+    # return filename
+    >>> proj.filename
     './test'
     ```
 
-## The Factory
+- The Loader
+    ```py
+    # maps
+    >>> proj.loader
+    <Loaded true, maps [0x400000:0x5004000]>
+    ```
 
-- 將物件實例化。
+- The Factory: 將物件實例化。
     - Blocks    
+        ````py
+        # is used to extract a basic block of code from a given address
+        >>> block = proj.factory.block(proj.entry)
+        
+        # block type
+        >>> block
+        <Block for 0x8048450, 33 bytes>
+        
+        # the address of all instructions from a basic block
+        >>> block.instruction_addrs
+        (134513744, 134513746, 134513747, 134513749, 134513752, 134513753, 134513754, 134513755, 134513760, 134513765, 134513766, 134513767, 134513772)
+        
+        # perfect print 
+        >>> block.pp()
+                _start:
+        8048450  xor     ebp, ebp
+        8048452  pop     esi
+        8048453  mov     ecx, esp
+        8048455  and     esp, 0xfffffff0
+        8048458  push    eax
+        8048459  push    esp
+        804845a  push    edx
+        804845b  push    __libc_csu_fini
+        8048460  push    __libc_csu_init
+        8048465  push    ecx
+        8048466  push    esi
+        8048467  push    main
+        804846c  call    __libc_start_main
+        ```
+    - 輸出所有 block。
+        ```py
+        proj = angr.Project('/path/to/binary')
+        init_state = proj.factory.entry_state()
+        simgr = proj.factory.simgr(init_state)
+        while simgr.active:
+            print(proj.factory.block(simgr.active[0].addr).pp())
+            simgr.step()
+        ````
     - States
+        ```py
+        # create a SimState object from a given address (entry point)
+        >>> state = proj.factory.entry_state()
+        <SimState @ 0x401670>
+
+        # get the current instruction pointer
+        >>> state.regs.rip        
+        <BV64 0x401670>
+        >>> state.regs.rax
+        <BV64 0x1c>
+
+        # interpret the memory at the entry point as a C int
+        >>> state.mem[proj.entry].int.resolved  
+        <BV32 0x8949ed31>
+        ```
     - Simulation Managers 
-    ```py
-    >>> block = proj.factory.block(proj.entry)
-    
-    >>> block
-    <Block for 0x8048450, 33 bytes>
-    
-    >>> block.instruction_addrs
-    (134513744, 134513746, 134513747, 134513749, 134513752, 134513753, 134513754, 134513755, 134513760, 134513765, 134513766, 134513767, 134513772)
-    
-    >>> block.pp()
-            _start:
-    8048450  xor     ebp, ebp
-    8048452  pop     esi
-    8048453  mov     ecx, esp
-    8048455  and     esp, 0xfffffff0
-    8048458  push    eax
-    8048459  push    esp
-    804845a  push    edx
-    804845b  push    __libc_csu_fini
-    8048460  push    __libc_csu_init
-    8048465  push    ecx
-    8048466  push    esi
-    8048467  push    main
-    804846c  call    __libc_start_main
-    ```
-- 輸出所有 block。
-    ```py
-    proj = angr.Project('/path/to/binary')
-    init_state = proj.factory.entry_state()
-    simgr = proj.factory.simgr(init_state)
-    while simgr.active:
-        print(proj.factory.block(simgr.active[0].addr).pp())
-        simgr.step()
-    ```
+        ```py
+        # create a simulation manager
+        >>> simgr = proj.factory.simulation_manager(state)
+        <SimulationManager with 1 active>
+        
+        # active state
+        >>> simgr.active
+        [<SimState @ 0x401670>]
+        
+        # step a basic block
+        >>> simgr.step()
+        ```
 
 ## Loading a Binary
 - [angr-Documentation - Loading a Binary](https://docs.angr.io/core-concepts/loading#the-loader)
@@ -101,7 +140,6 @@
     - [Loading Options](https://docs.angr.io/core-concepts/loading#loading-options)
         - [Backends](https://docs.angr.io/core-concepts/loading#backends)
         - [Symbolic Function Summaries](https://docs.angr.io/core-concepts/loading#symbolic-function-summaries)
-
 - 載入執行檔。
     ```py
     >>> proj.loader
@@ -176,11 +214,9 @@
         # use blank_state() to create a SimState object
         >> init_state = proj.factory.blank_state(addr=start_address)
         ```
-- [full_init_state](https://api.angr.io/angr.html#angr.factory.AngrObjectFactory.full_init_state)
+- [full_init_state](https://api.angr.io/angr.html#angr.factory.AngrObjectFactory.full_init_state): 創建一個完整的 SimState 物件，包含其中所有的狀態。
 
-- [call_state](https://api.angr.io/angr.html#angr.factory.AngrObjectFactory.call_state)
-    - 回傳指定 function 的 SimState 物件。
-
+- [call_state](https://api.angr.io/angr.html#angr.factory.AngrObjectFactory.call_state): 回傳指定 function 的 SimState 物件。
 
 
 ## Simulation Manager
