@@ -18,3 +18,12 @@
 - **angr-sheatsheet**
 - **Tools sheatsheet**
     
+## Further Reading
+
+- [HackTricks](https://book.hacktricks.xyz/generic-methodologies-and-resources/pentesting-methodology)
+
+- [awesome-security](https://github.com/sbilly/awesome-security)
+
+- [awesome-ctf](https://github.com/apsdehal/awesome-ctf)
+
+- [the-book-of-secret-knowledge](https://github.com/trimstray/the-book-of-secret-knowledge)
