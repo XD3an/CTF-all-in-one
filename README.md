@@ -13,8 +13,7 @@
 ## Tools
 
 - **shellcode**
-    - x86
-    - x86_64
+    - x86, x86_64
 - **angr-sheatsheet**
 - **Tools sheatsheet**
     
