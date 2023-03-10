@@ -12,11 +12,13 @@
 
 ## Tools
 
-- **shellcode**
+- Tools cheatsheet
+
+- shellcode
     - x86, x86_64
-- **angr-sheatsheet**
-- **Tools sheatsheet**
-    
+
+- angr-cheatsheet
+  
 ## Further Reading
 
 - [HackTricks](https://book.hacktricks.xyz/generic-methodologies-and-resources/pentesting-methodology)
