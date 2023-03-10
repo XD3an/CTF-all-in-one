@@ -89,9 +89,11 @@
 
 ## Script Languages
 
-### Python
+## Bash
 
 - [awesome-cheatsheets/bash.sh](https://github.com/LeCoupa/awesome-cheatsheets/blob/master/languages/bash.sh): A bash cheatsheet.
+
+### Python
 
 - [awesome-cheatsheets/python](https://github.com/LeCoupa/awesome-cheatsheets/blob/master/languages/python.md): A simple python cheatsheet.
 
