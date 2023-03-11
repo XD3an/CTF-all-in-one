@@ -97,7 +97,7 @@
 
 ## Script Languages
 
-## Bash
+### Bash
 
 - [awesome-cheatsheets/bash.sh](https://github.com/LeCoupa/awesome-cheatsheets/blob/master/languages/bash.sh): A bash cheatsheet.
 
