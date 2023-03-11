@@ -49,6 +49,14 @@
 
 - [BurpSuite](https://portswigger.net/burp): tool for web security testing.
 
+## Penetration Testing
+
+- [Metasploit](https://www.metasploit.com/): Metasploit Framework.
+
+## Network
+
+- [Nmap](https://nmap.org/): A free and open source utility used by millions of people for network discovery, administration, and security auditing.
+
 - [wireshark](https://www.wireshark.org/): network protocol analyzer.
 
 ## Linux commands
