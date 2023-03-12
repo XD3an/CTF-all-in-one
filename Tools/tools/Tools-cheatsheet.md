@@ -78,14 +78,17 @@
 - [strip](https://man7.org/linux/man-pages/man1/strip.1.html): discard symbols and other data from object files.
     - `gcc -s`
 
-
 ## Forensic
+
+- [AccessData FTK](https://www.pluralsight.com/paths/accessdata-forensic-toolkit-ftk?exp=1): It is a court-accepted, digital investigations software that includes many features and capabilities such as full-disk forensic images, decrypt files and crack passwords, parse registry files, collect, process and analyze datasets, and advanced volatile memory analysis. 
+
+## Steganography
 
 - [binwalk](https://github.com/ReFirmLabs/binwalk): Firmware Analysis Tool.
 
 - [zsteg](https://github.com/zed-0xff/zsteg): detect stegano-hidden data in PNG & BMP.
 
-- [AccessData FTK](https://www.pluralsight.com/paths/accessdata-forensic-toolkit-ftk?exp=1): It is a court-accepted, digital investigations software that includes many features and capabilities such as full-disk forensic images, decrypt files and crack passwords, parse registry files, collect, process and analyze datasets, and advanced volatile memory analysis. 
+- [stegsolve](https://github.com/zardus/ctf-tools/blob/master/stegsolve/install): is a stegano solver for challenges.
 
 ## Online Resources
 
