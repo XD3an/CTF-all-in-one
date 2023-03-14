@@ -53,6 +53,8 @@
 
 - [Metasploit](https://www.metasploit.com/): Metasploit Framework.
 
+- [Hack-Tools](https://github.com/LasCC/Hack-Tools#install-the-extension): The all-in-one Red Team extension for Web Pentester.
+
 ## Network
 
 - [Nmap](https://nmap.org/): A free and open source utility used by millions of people for network discovery, administration, and security auditing.
