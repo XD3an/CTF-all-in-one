@@ -1,23 +1,15 @@
 # AIS32023 pre-exam write-up
 
-Tags: CTF
-Add Date: May 18, 2023 4:47 PM
-Created time: May 18, 2023 4:47 PM
-Last edited time: August 3, 2023 11:12 AM
-
 # Misc
 
----
 
 ## Welcome
 
----
 
 - **AIS3{WELCOME-TO-2023-PRE-EXAM-&-MY-FIRST-CTF}**
 
 ## robot
 
----
 
 ### Information
 
@@ -82,11 +74,9 @@ if __name__=='__main__':
 
 # Crypto
 
----
 
 ## Fernet
 
----
 
 ### Information
 
@@ -219,11 +209,9 @@ if __name__=='__main__':
 
 # Web
 
----
 
 ## Loing Panel
 
----
 
 ### Information
 
@@ -252,11 +240,9 @@ Author: Ching367436
 
 # Reverse
 
----
 
 ## Simply Reverse
 
----
 
 ### Information
 
@@ -319,7 +305,6 @@ Just reverse it!
 
 ## flag-sleeper
 
----
 
 ### Information
 
@@ -394,11 +379,9 @@ print()
 
 # Pwn
 
----
 
 ## Simply Pwn
 
----
 
 ### Information
 
@@ -492,8 +475,6 @@ if __name__=='__main__':
 ```
 
 ## ManagementSystem
-
----
 
 ### Information
 
