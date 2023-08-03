@@ -16,6 +16,8 @@
 
 - [angr_ctf](https://github.com/jakespringer/angr_ctf)
 
+- [XSS-game](https://xss-game.appspot.com/)
+
 ## Tools
 
 - Tools cheatsheet
