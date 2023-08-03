@@ -26,6 +26,8 @@
     - x86, x86_64
 
 - angr-cheatsheet
+
+- windows shellcode loader
   
 ## Further Reading
 
