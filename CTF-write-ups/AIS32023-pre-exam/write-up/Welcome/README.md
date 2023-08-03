@@ -1,5 +1,0 @@
-# Welcome
-
-- `Misc`
-
-- AIS3{WELCOME-TO-2023-PRE-EXAM-&-MY-FIRST-CTF}
