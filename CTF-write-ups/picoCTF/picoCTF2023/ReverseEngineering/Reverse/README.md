@@ -17,3 +17,8 @@ I forgot the password to this file. Please find it for me?
     - IDA Pro
     - Ghidra
     - ...
+
+- 直接取得 flag
+    ```sh
+    strings ret | grep picoCTF
+    ```
